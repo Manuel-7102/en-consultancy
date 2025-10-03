@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>EN Consultancy — GMP Compliance & Business Excellence</title>
+  <meta name="description" content="EN Consultancy helps small manufacturers achieve GMP compliance. Training, Mini-audits, Regulatory documentation." />
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="" crossorigin="anonymous">
+
+  <!-- AOS (Animate On Scroll) -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    /* ========== Base / Accessibility ========== */
+    :root{
+      --blue-dark: #0A2342;
+      --gold: #FFD700;
+      --gold-hover: #FFC300;
+      --bg: #f4f8fb;
+      --card-bg: #ffffff;
+      --max-width: 1100px;
+      --radius: 12px;
+      --text: #0A2342;
+      --muted: #5a6b7a;
+    }
+
+    html { box-sizing: border-box; font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif; font-size:16px; }
+    *, *:before, *:after { box-sizing: inherit; }
+    body { margin:0; background: var(--bg); color: var(--text); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; line-height:1.5; }
+
+    /* High contrast focus for keyboard users */
+    :focus { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+    /* Skip link */
+    .skip-link {
+      position: absolute;
+      left: -999px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+    .skip-link:focus {
+      left: 10px;
+      top: 10px;
+      width: auto;
+      height: auto;
+      background: var(--gold);
+      color: var(--blue-dark);
+      padding: 8px 12px;
+      border-radius: 6px;
+      z-index: 9999;
+    }
+
+    /* ========== Header & Nav ========== */
+    header {
+      background: var(--blue-dark);
+      color: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(2,18,42,0.15);
+    }
+    .header-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 20px;
+      justify-content: space-between;
+    }
+    .brand {
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .brand img { height:52px; width:auto; display:block; border-radius:8px; }
+    .brand .title { font-weight:700; font-size:1.125rem; color:var(--gold); }
+    .brand .tag { font-size:0.9rem; color:#d6e6f6; }
+
+    nav[role="navigation"] { display:flex; gap:18px; align-items:center; }
+    nav a { color:var(--gold); text-decoration:none; font-weight:600; display:inline-flex; align-items:center; gap:8px; }
+    nav a:hover, nav a:focus { color: #fff; text-decoration:underline; }
+    nav a i { min-width:18px; text-align:center; }
+
+    /* Accessible hamburger */
+    .menu-toggle {
+      display:none;
+      background:transparent;
+      border:0;
+      color:var(--gold);
+      font-size:1.25rem;
+      cursor:pointer;
+    }
+
+    /* Mobile menu */
+    .mobile-nav {
+      display:none;
+      background:var(--blue-dark);
+    }
+    .mobile-nav a { display:block; padding:12px 20px; border-top: 1px solid rgba(255,255,255,0.03); }
+
+    /* ========== Main content ========== */
+    main { max-width: var(--max-width); margin: 24px auto; padding: 0 20px; }
+
+    .hero {
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+      background: linear-gradient(180deg, rgba(232,241,250,0.6), rgba(208,227,245,0.6));
+      padding:36px;
+      border-radius: var(--radius);
+      text-align:center;
+    }
+    .hero h1 { margin:0; font-size:1.8rem; color:var(--blue-dark); }
+    .hero p { margin:0; color:var(--muted); font-size:1rem; }
+
+    /* Services grid + cards */
+    .services {
+      margin-top:36px;
+    }
+    .services-grid {
+      display:grid;
+      gap:18px;
+      grid-template-columns: 1fr;
+      align-items:stretch;
+      margin-top:18px;
+    }
+    .service-card {
+      background:var(--card-bg);
+      border-radius:16px;
+      padding:20px;
+      box-shadow: 0 6px 18px rgba(12,24,40,0.06);
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      transition:transform .28s ease, box-shadow .28s ease;
+    }
+    .service-card:hover, .service-card:focus-within { transform: translateY(-6px); box-shadow: 0 12px 28px rgba(12,24,40,0.12); }
+    .icon-circle {
+      width:64px; height:64px; border-radius:50%;
+      background:var(--gold); color:var(--blue-dark); display:inline-flex;
+      align-items:center; justify-content:center; font-size:1.5rem; box-shadow:0 6px 14px rgba(10,35,66,0.12);
+      transition: transform .25s ease, background .25s ease, color .25s ease;
+    }
+    .icon-circle:hover, .icon-circle:focus { background:var(--blue-dark); color:#fff; transform:scale(1.08); }
+    .service-title { font-size:1.05rem; font-weight:700; color:var(--blue-dark); margin:0; }
+    .service-desc { margin:0; color:var(--muted); font-size:0.97rem; }
+
+    /* Contact area */
+    .contact {
+      margin-top:28px;
+      display:grid;
+      gap:18px;
+    }
+    .contact-grid { display:grid; gap:18px; grid-template-columns: 1fr; }
+    .contact-card { background:var(--card-bg); padding:18px; border-radius:12px; box-shadow:0 6px 18px rgba(10,35,66,0.06); }
+    .contact-card p { margin:8px 0; color:var(--muted); }
+
+    /* Footer */
+    footer { margin-top:40px; padding:28px 20px; background:linear-gradient(180deg, #08122a, #061125); color:#dfe9f5; }
+    .footer-inner { max-width:var(--max-width); margin:0 auto; display:flex; flex-wrap:wrap; gap:20px; justify-content:space-between; align-items:center; }
+
+    .social { display:flex; gap:12px; align-items:center; }
+    .social a { color:var(--gold); font-size:1.1rem; display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:8px; background:transparent; text-decoration:none; }
+    .social a:hover, .social a:focus { background:rgba(255,255,255,0.03); color:#fff; }
+
+    .small { font-size:0.9rem; color:#b9c7db; }
+
+    /* Back to top */
+    #backToTop {
+      position:fixed; right:20px; bottom:20px; background:var(--gold); color:var(--blue-dark);
+      border:0; padding:10px 12px; border-radius:28px; box-shadow:0 8px 20px rgba(10,35,66,0.12); cursor:pointer;
+      display:none; z-index:1100;
+    }
+    #backToTop:focus { outline-offset: 4px; }
+
+    /* Form styles */
+    .contact-form { display:grid; gap:12px; }
+    .form-row { display:flex; gap:12px; }
+    .form-row .col { flex:1; }
+    input[type="text"], input[type="email"], textarea {
+      width:100%; padding:10px 12px; border-radius:8px; border:1px solid #dbe7f2; background:#fff; color:var(--text);
+      font-size:1rem;
+    }
+    textarea { min-height:120px; resize:vertical; }
+    .btn-primary { background:var(--blue-dark); color:#fff; padding:10px 14px; border-radius:8px; border:0; cursor:pointer; font-weight:700; }
+    .btn-secondary { background:transparent; border:2px solid var(--gold); color:var(--gold); padding:8px 12px; border-radius:8px; cursor:pointer; font-weight:700; }
+
+    /* Responsive layout */
+    @media (min-width: 720px) {
+      .services-grid { grid-template-columns: repeat(3, 1fr); }
+      .contact-grid { grid-template-columns: repeat(2, 1fr); }
+      nav { gap:22px; }
+      .menu-toggle { display:none; }
+      .mobile-nav { display:none; }
+    }
+
+    @media (max-width: 719px) {
+      .menu-toggle { display:inline-block; background:transparent; border:0; color:var(--gold); font-size:1.25rem; }
+      nav { display:none; }
+      .mobile-nav { display:block; }
+    }
+
+    /* AOS - reduce motion */
+    @media (prefers-reduced-motion: reduce) {
+      [data-aos] { transition:none !important; transform:none !important; opacity:1 !important; }
+      .service-card, .icon-circle { transition:none !important; }
+    }
+
+    /* small tweaks */
+    .muted { color:var(--muted); font-size:0.95rem; }
+    a.privacy { color:#cfe3ff; text-decoration:underline; }
+  </style>
+</head>
+<body>
+  <!-- Skip link for keyboard / screen reader users -->
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- Header -->
+  <header role="banner" data-aos="fade-down">
+    <div class="header-inner">
+      <div class="brand" aria-label="EN Consultancy">
+        <!-- Replace src with your logo file; alt text should describe the logo if important to brand -->
+        <img src="EN-L2.png.png" alt="EN Consultancy logo (EN stylized)" />
+        <div>
+          <div class="title">EN Consultancy</div>
+          <div class="tag">GMP Compliance & Business Excellence</div>
+        </div>
+      </div>
+
+      <!-- Desktop nav -->
+      <nav role="navigation" aria-label="Primary navigation">
+        <a href="#home" title="Home"><i class="fas fa-house" aria-hidden="true"></i>Home</a>
+        <a href="#about" title="About us"><i class="fas fa-info-circle" aria-hidden="true"></i>About</a>
+        <a href="#services" title="Our services"><i class="fas fa-briefcase" aria-hidden="true"></i>Services</a>
+        <a href="#contact" title="Contact"><i class="fas fa-envelope" aria-hidden="true"></i>Contact</a>
+      </nav>
+
+      <!-- Mobile controls -->
+      <div>
+        <button id="menuToggle" class="menu-toggle" aria-haspopup="true" aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle menu">
+          <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile nav (visible on small screens) -->
+    <nav id="mobileMenu" class="mobile-nav" aria-label="Mobile primary navigation" hidden>
+      <a href="#home"><i class="fas fa-house" aria-hidden="true"></i> Home</a>
+      <a href="#about"><i class="fas fa-info-circle" aria-hidden="true"></i> About</a>
+      <a href="#services"><i class="fas fa-briefcase" aria-hidden="true"></i> Services</a>
+      <a href="#contact"><i class="fas fa-envelope" aria-hidden="true"></i> Contact</a>
+    </nav>
+  </header>
+
+  <!-- Main -->
+  <main id="main-content" role="main">
+    <!-- Hero -->
+    <section id="home" class="hero" aria-labelledby="hero-heading" data-aos="fade-up">
+      <h1 id="hero-heading">Welcome to EN Consultancy</h1>
+      <p>Your trusted partner for pharmaceutical, food, herbal & cosmetic businesses — training, GMP audits, product development and more.</p>
+      <p class="muted">Transparent. Practical. Regulatory-savvy.</p>
+    </section>
+
+    <!-- About -->
+    <section id="about" aria-labelledby="about-heading" data-aos="fade-up" style="margin-top:28px;">
+      <h2 id="about-heading" style="margin:0 0 12px 0; font-size:1.25rem;"><i class="fas fa-users" aria-hidden="true"></i> About Us</h2>
+      <div class="muted" style="max-width:900px; margin:auto; text-align:left;">
+        <p><strong>EN Consultancy</strong> supports manufacturers and small businesses to meet regulatory requirements and deliver quality products. We combine practical GMP experience with tailored training, hands-on audits, and product development support. We believe in clear communication, ethical practice, and building local capacity.</p>
+      </div>
+    </section>
+     <h2>Helping small manufacturers achieve GMP compliance with confidence</h2>
+        <p>Training • Mini-audits • Regulatory documentation — Practical support for food, cosmetics and pharma SMEs.</p>
+
+        <div class="cta-row">
+          <a class="btn btn-primary" id="downloadBtn" href="#resources">Text Free GMP Checklist</a>
+          <a class="btn btn-outline" href="mailto:enconsultancy58@gmail.com?subject=Book%20Consultation">Book Consultation</a>
+        </div>
+
+        <div style="margin-top:18px;color:var(--muted)">
+          <strong>Intro Offer:</strong> GMP Starter Package — 1-hour consultation + mini-audit report.
+        </div>
+
+        <div style="margin-top:22px;font-size:14px;color:var(--muted)">
+          <strong>Phone:</strong> +233 54 161 7102 &nbsp; • &nbsp; <a href="mailto:enconsultancy58@gmail.com">enconsultancy58@gmail.com</a>
+        </div>
+      </div>
+
+      <div style="text-align:center">
+        <img src="https://www.pngwing.com/en/free-png-ntzsv" alt="EN Consultancy" style="width:100%;border-radius:12px;object-fit:cover">
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section style="margin-top:28px">
+    <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
+      <div style="flex:1">
+        <h3 class="section-title">Why EN Consultancy</h3>
+        <ul style="color:var(--muted);margin-top:8px">
+          <li>Experience with FDA/GMP compliance & practical on-floor solutions</li>
+          <li>Tailored packages for small & growing manufacturers</li>
+          <li>Clear, actionable reports you can implement</li>
+        </ul>
+      </div>
+      <div style="width:220px;text-align:center">
+        <img src="https://png.pngtree.com/thumb_back/fh260/background/20220408/pngtree-consulting-services-global-web-business-photo-image_4037129.jpg" alt="Consultant" style="width:100%;border-radius:10px;object-fit:cover">
+      </div>
+    </div>
+  </section>
+
+    <!-- Services -->
+    <section id="services" class="services" aria-labelledby="services-heading" data-aos="fade-up">
+      <h2 id="services-heading" style="display:flex; align-items:center; justify-content:center; gap:10px; font-size:1.25rem;"><i class="fas fa-cogs" aria-hidden="true"></i> Our Services</h2>
+
+      <div class="services-grid" role="list" aria-label="Services list">
+        <!-- Card 1 -->
+        <article class="service-card" role="listitem" tabindex="0" data-aos="zoom-in" data-aos-delay="100" aria-labelledby="s1">
+          <div class="icon-circle" aria-hidden="true"><i class="fas fa-chalkboard-teacher"></i></div>
+          <h3 id="s1" class="service-title">Training & Capacity Building</h3>
+          <p class="service-desc">Tailored workshops and practical training for your staff — quality systems, GMP fundamentals, and SOP development.</p>
+          <p style="font-weight:700;margin-top:8px">Deliverables:</p>
+        <ul style="color:var(--muted);margin-top:6px">
+          <li>Training slides & attendance register</li>
+          <li>Action plan for trainers</li>
+        </ul>
+        <div style="margin-top:12px"><a href="#contact" class="btn btn-outline">Book Training</a></div>
+      </div>
+        </article>
+       
+
+
+        <!-- Card 2 -->
+        <article class="service-card" role="listitem" tabindex="0" data-aos="zoom-in" data-aos-delay="200" aria-labelledby="s2">
+          <div class="icon-circle" aria-hidden="true"><i class="fas fa-clipboard-check"></i></div>
+          <h3 id="s2" class="service-title">GMP Compliance Audits</h3>
+          <p class="service-desc">Thorough facility audits with clear corrective action guidance to help you reach and maintain compliance.</p>
+          <p style="font-weight:700;margin-top:8px">Deliverables:</p>
+        <ul style="color:var(--muted);margin-top:6px">
+          <li>Mini audit checklist (tailored)</li>
+          <li>Top 3 corrective actions report</li>
+        </ul>
+        <div style="margin-top:12px"><a href="#contact" class="btn btn-outline">Request Audit</a></div>
+      </div>
+        </article>
+        
+
+        <!-- Card 3 -->
+        <article class="service-card" role="listitem" tabindex="0" data-aos="zoom-in" data-aos-delay="300" aria-labelledby="s3">
+          <div class="icon-circle" aria-hidden="true"><i class="fas fa-flask"></i></div>
+          <h3 id="s3" class="service-title">Product Development Support</h3>
+          <p class="service-desc">Formulation advice, stability planning and documentation support to take your product from idea to market.</p>
+          <p style="font-weight:700;margin-top:8px">Deliverables:</p>
+        <ul style="color:var(--muted);margin-top:6px">
+          <li>Editable SOP templates</li>
+          <li>Document control setup</li>
+        </ul>
+        <div style="margin-top:12px"><a href="#contact" class="btn btn-outline">Get Documents</a></div>
+      </div>
+    </div>
+        </article>
+        
+
+        <!-- Card 4 -->
+        <article class="service-card" role="listitem" tabindex="0" data-aos="zoom-in" data-aos-delay="400" aria-labelledby="s4">
+          <div class="icon-circle" aria-hidden="true"><i class="fas fa-warehouse"></i></div>
+          <h3 id="s4" class="service-title">Facility & Equipment Validation</h3>
+          <p class="service-desc">Installation, operational and performance qualification support plus validation documentation and protocols.</p>
+        </article>
+
+        <!-- Card 5 -->
+        <article class="service-card" role="listitem" tabindex="0" data-aos="zoom-in" data-aos-delay="500" aria-labelledby="s5">
+          <div class="icon-circle" aria-hidden="true"><i class="fas fa-seedling"></i></div>
+          <h3 id="s5" class="service-title">Herbal, Food & Cosmetic Consultancy</h3>
+          <p class="service-desc">Specialised support for natural product businesses — regulatory expectations, labeling and good practice.</p>
+        </article>
+
+        <!-- Card 6 -->
+        <article class="service-card" role="listitem" tabindex="0" data-aos="zoom-in" data-aos-delay="600" aria-labelledby="s6">
+          <div class="icon-circle" aria-hidden="true"><i class="fas fa-lightbulb"></i></div>
+          <h3 id="s6" class="service-title">Business Strategy & Innovation</h3>
+          <p class="service-desc">Market-ready strategies, product positioning and innovation coaching to grow sustainably and responsibly.</p>
+        </article>
+      </div>
+    </section>
+     <!-- LEAD MAGNET -->
+  <section id="resources" style="margin-top:28px">
+    <div class="lead-magnet">
+      <div style="flex:1">
+        <h3>Free Resource</h3>
+        <p style="color:var(--muted)">Start with our free GMP checklist — a simple way to find your biggest gaps.</p>
+        <form id="leadForm" class="lead-form" onsubmit="submitLead(event)">
+          <input type="email" id="leadEmail" placeholder="Email address" required>
+          <button class="btn btn-primary" type="submit" style="margin-left:10px">Download Now</button>
+        </form>
+        <div id="leadMsg" style="margin-top:8px;color:var(--muted);font-size:13px"></div>
+      </div>
+      <div style="width:160px;text-align:center">
+        <img src="https://via.placeholder.com/120x160.png?text=Checklist" alt="Checklist" style="width:100%;border-radius:8px">
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section style="margin-top:28px">
+    <h3 class="section-title">What clients say</h3>
+    <div class="testimonials">
+      <div class="testimonial">
+        <p style="color:var(--muted)">“The mini-audit helped us spot gaps we never noticed. We felt ready for the inspection.”</p>
+        <p style="font-weight:700;margin-top:10px">— Michael Duku, Food SME</p>
+      </div>
+      <div class="testimonial">
+        <p style="color:var(--muted)">“Training was clear and practical — staff implemented changes the next day.”</p>
+        <p style="font-weight:700;margin-top:10px">— James Abindaw, Herbal Drug manufacturer</p>
+      </div>
+    </div>
+  </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact" aria-labelledby="contact-heading" data-aos="fade-up" style="margin-top:28px;">
+      <h2 id="contact-heading" style="font-size:1.125rem; text-align:center;"><i class="fas fa-phone" aria-hidden="true"></i> Contact Us</h2>
+
+      <div class="contact-grid">
+        <div class="contact-card" aria-label="Contact details">
+          <p><strong>Email:</strong> <a href="mailto:enconsultancy58@gmail.com">enconsultancy58@gmail.com</a></p>
+          <p><strong>Phone:</strong> <a href="tel:+233541617102">+233 541 617 102</a></p>
+          <p><strong>Whatsapp:</strong> <a href="https://wa.me/233541617102" target="_blank" rel="noopener">+233 54 161 7102 </a></p>
+          <p class="muted">We aim to respond within 48 hours. For urgent enquiries, call the number above.</p>
+        </div>
+
+        <div class="contact-card" aria-label="Contact form">
+          <form class="contact-form" action="mailto:enconsultancy58@gmail.com" method="post" enctype="text/plain" aria-label="Contact form">
+            <label for="name">Your name</label>
+            <input id="name" name="name" type="text" placeholder="Full name" required>
+
+            <label for="email">Your email</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required>
+
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="How can we help?" required></textarea>
+
+            <div style="display:flex; gap:8px; margin-top:6px;">
+              <button type="submit" class="btn-primary" aria-label="Send message">Send</button>
+              <button type="reset" class="btn-secondary" aria-label="Reset form">Reset</button>
+            </div>
+
+            <p class="small" style="margin-top:8px;">By contacting us you agree to our <a class="privacy" href="#privacy">Privacy Policy</a>.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer role="contentinfo" data-aos="fade-up">
+    <div class="footer-inner">
+      <div class="small">&copy; <span id="year"></span> EN Consultancy. All rights reserved. <a class="privacy" href="#privacy">Privacy</a> • <a class="privacy" href="#terms">Terms</a></div>
+      <div class="social" aria-label="Social links">
+        <a href="#" aria-label="Facebook" title="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+        <a href="#" aria-label="Twitter" title="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+        <a href="#" aria-label="LinkedIn" title="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button id="backToTop" aria-label="Back to top"><i class="fas fa-arrow-up" aria-hidden="true"></i></button>
+
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <script>
+    // ========= Initialize AOS =========
+    AOS.init({ duration: 700, once: true });
+
+    // ========= Mobile menu accessibility =========
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', String(!expanded));
+      if (mobileMenu.hasAttribute('hidden')) {
+        mobileMenu.removeAttribute('hidden');
+      } else {
+        mobileMenu.setAttribute('hidden', '');
+      }
+    });
+
+    // Allow Enter/Space to operate the button
+    menuToggle.addEventListener('keyup', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') menuToggle.click();
+    });
+
+    // Close mobile menu on link click
+    mobileMenu?.querySelectorAll('a')?.forEach(a => {
+      a.addEventListener('click', () => {
+        mobileMenu.setAttribute('hidden', '');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // ========= Back to top button =========
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) backToTop.style.display = 'block';
+      else backToTop.style.display = 'none';
+    });
+    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    backToTop.addEventListener('keyup', (e) => { if (e.key === 'Enter' || e.key === ' ') backToTop.click(); });
+
+    // ========= Year auto update =========
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ========= Respect prefers-reduced-motion for AOS (fallback safety) =========
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (reduceMotion.matches) {
+      // Disable AOS animations if user prefers reduced motion
+      AOS.refreshHard();
+    }
+
+    // ========= Simple client-side validation hint (progressive enhancement) =========
+    document.querySelectorAll('form').forEach(form => {
+      form.addEventListener('submit', (e) => {
+        // default is mailto fallback; just allow submit to proceed
+        // but check required fields exist (browsers do this natively)
+      });
+    });
+
+    // ========= Helpful keyboard focus for service cards =========
+    document.querySelectorAll('.service-card').forEach(card => {
+      card.addEventListener('keyup', (e) => {
+        if (e.key === 'Enter') {
+          // On Enter we focus the first actionable element (none here) - this allows keyboard activation if you later add links/buttons
+        }
+      });
+    });
+
+  </script>
+
+  <!-- Privacy & Terms placeholders (add actual content or pages) -->
+  <div id="privacy" hidden>
+    <h2>Privacy policy</h2>
+    <p>This is a placeholder. Replace with your real privacy policy that explains how you handle user data.</p>
+  </div>
+  <div id="terms" hidden>
+    <h2>Terms of use</h2>
+    <p>This is a placeholder. Replace with your real terms and conditions.</p>
+  </div>
+</body>
+</html>
